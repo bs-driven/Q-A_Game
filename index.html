@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang = "en">
+  <head>
+    <meta charset = "UTF-8" />
+    <meta name = "viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv = "X-UA-Compatible" content="ie=edge" />
+    <link
+    rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+  />
+    <link rel = "stylesheet" href="./style.css" />
+    <title>Coding Quiz</title>
+  </head>
+  <body>
+    <header class = "header">
+        <h1 class ="time" style="text-align:center;"></h1>
+        <div id ="main"></div>
+        <h2>Coding Skills Test</h2>
+        <p>
+            This quiz has some basic coding concept question within. You will be tested on HTML,CSS, and Javascript. Each question does have timer giving you 60 seconds to answer the question. Your score will be saved and ranked. Now if your are a brave soul then take this quiz and see how good your skills are.
+        </p>
+    </header>
+    
+    <div class="Start" >
+        <button id="startBtn" type="button">Start Quiz</button>
+    </div>
+
+    <form class="quiz d-none">
+        <label>Quiz</label><br><br>
+            <p class = "questions" id = "theQuestion"></p>
+            <input type ="radio" id = "A" value ="1">1<br>
+            <input type ="radio" id = "B" value = "2">2<br>
+            <input type ="radio" id = "C" value = "3">3<br>
+            <input type ="radio" id = "D" value = "4">4<br>
+        <input type = "submit" value = "Submit">
+
+    </form>
+
+    
+
+    </body>
+
+    <script src = "./script2.js"></script>
