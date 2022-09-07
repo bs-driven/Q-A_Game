@@ -1,68 +1,18 @@
-var startBtn= document.getElementById("startBtn");
-var timeEl= document.querySelector(".time");
-// var mainEl= document.getElementById("main");
-var formEl= document.getElementsById("quiz");
-var questionEl= document.getElementById("theQuestion");
-var valueAEl= document.getElementById("A");
-var valueBEl= document.getElementById("B");
-var valueCEl= document.getElementById("C");
-var valueDEl= document.getElementById("D");
-var secondsLeft = 60;
-var totalScore = 0;
+var startBtn = document.getElementById("startBtn");
+var timeEl = document.querySelector(".time");
+// var mainEl = document.getElementById("main");
+// var formEl = document.querySelector("#quiz");
+var questionEl = document.getElementById("theQuestion");
+var valueAEl = document.getElementById("A");
+var valueBEl = document.getElementById("B");
+var valueCEl = document.getElementById("C");
+var valueDEl = document.getElementById("D");
+var secondsLeft = 40;
+// var totalScore = 0;
 // var questions= quizQuestions
 
 startBtn.addEventListener("click", beginQuiz);
-
-var beginQuiz = function() {
-    questAndAnswers();
-  setTime();
-}
-
-
-
-  
-
-var questAndAnswers= function(){
- questionEl.innnerHTML("what is the symbol that starts a array?");
-  // //  var valueChoices= [valueAEl, valueBEl, valueCEl, valueDEl,];
-  //  var answerChoices = ["<>","{}","[]","()"];
-  // //  var soltion1= [valueAEl, valueBEl, valueCEl, valueDEl];
-  //  var correctAnswer= "[]";
- 
- }
-
-// [
-//   {what
-//     title: "quetsion 1",
-//     choices: ['option 1', 'option 2'],
-//     answer: 'option 2'
-//   } is ,
-//   {
-//     title: "quetsion 2",
-//     choices: ['option 1', 'option 2'],
-//     answer: 'option 1'
-//   }
-// ]
-
-
-
-// var quizQuestions = function() {
-  // var question1 = [
-  //   {
-  //     title: "what symbol starts a array",
-  //     choices:["<>","()","{}","[]"],
-  //     answer: "[]",
-
-  //   }
-  // ]
-
-// }
-
-
-
-
-
-
+// console.log("test");
 
 function setTime() {
   // Sets interval in variable
@@ -81,4 +31,70 @@ function setTime() {
 }
 
 
-//  setTime()
+
+function beginQuiz() {
+  setTime();
+  questAndAnswers();
+
+};
+  
+var questionCount = 0;
+function questAndAnswers(){
+
+questionEl.textContent = quizQuestions[questionCount].title;
+valueAEl.textContent = quizQuestions[questionCount].choices[0];
+valueBEl.textContent = quizQuestions[questionCount].choices[1];
+valueCEl.textContent = quizQuestions[questionCount].choices[2];
+valueDEl.textContent = quizQuestions[questionCount].choices[3];
+console.log(quizQuestions[questionCount].choices[0]);
+// Math.floor(Math.random() * choices;
+
+
+var quizQuestions =[ 
+  {
+      title: "What symbol starts a array?",
+      choices:["<>", "()", "{}", "[]"],
+      answer: "[]",
+  }]
+}
+// // ,{
+// //   title: "What symbols are used in making a Javascript object?",
+// //   choices: ["&&", "{}", "===", "[]"],
+// //   answer: "{}",
+// // }
+// ];
+
+// if (choices === answer) {
+//   totalScore ++;
+//   secondsLeft + 6;
+  
+// }
+
+// };
+
+
+
+// // formEl.addEventListener("click",nextQuestion)
+
+// // function nextQuestion(){
+
+  
+// // }
+//     // //  var valueChoices= [valueAEl, valueBEl, valueCEl, valueDEl,];
+//   //  var answerChoices = ["<>","{}","[]","()"];
+//   // //  var soltion1= [valueAEl, valueBEl, valueCEl, valueDEl];
+//   //  var correctAnswer= "[]";
+ 
+
+
+//  // [
+//  //   {what
+//  //     title: "quetsion 1",
+//  //     choices: ['option 1', 'option 2'],
+//  //     answer: 'option 2'
+//  //   } is ,
+//  //   {
+//  //     title: "quetsion 2",
+//  //     choices: ['option 1', 'option 2'],
+//  //     answer: 'option 1'
+//  //   }
