@@ -10,6 +10,12 @@ var valueDEl = document.getElementById("D");
 var secondsLeft = 40;
 // var totalScore = 0;
 // var questions= quizQuestions
+var quizQuestions =[ 
+  {
+      title: "What symbol starts a array?",
+      choices:["<>", "()", "{}", "[]"],
+      answer: "[]",
+  }]
 
 startBtn.addEventListener("click", beginQuiz);
 // console.log("test");
@@ -50,12 +56,7 @@ console.log(quizQuestions[questionCount].choices[0]);
 // Math.floor(Math.random() * choices;
 
 
-var quizQuestions =[ 
-  {
-      title: "What symbol starts a array?",
-      choices:["<>", "()", "{}", "[]"],
-      answer: "[]",
-  }]
+
 }
 // // ,{
 // //   title: "What symbols are used in making a Javascript object?",
