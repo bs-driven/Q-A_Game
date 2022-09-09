@@ -1,21 +1,30 @@
 var startBtn = document.getElementById("startBtn");
 var timeEl = document.querySelector(".time");
 // var mainEl = document.getElementById("main");
-// var formEl = document.querySelector("#quiz");
+var formEl = document.querySelector("#quiz");
 var questionEl = document.getElementById("theQuestion");
 var valueAEl = document.getElementById("A");
 var valueBEl = document.getElementById("B");
 var valueCEl = document.getElementById("C");
 var valueDEl = document.getElementById("D");
 var secondsLeft = 40;
-// var totalScore = 0;
+var totalScore = 0;
+var questionCount = 0;
 // var questions= quizQuestions
+// var submitAnswer= document.querySelector("#finalAnswer");
+
 var quizQuestions =[ 
   {
       title: "What symbol starts a array?",
       choices:["<>", "()", "{}", "[]"],
       answer: "[]",
-  }]
+  },
+  {
+  title: "What symbols are used in making a Javascript object?",
+  choices: ["&&", "{}", "===", "[]"],
+  answer: "{}",
+}
+]
 
 startBtn.addEventListener("click", beginQuiz);
 // console.log("test");
@@ -44,7 +53,7 @@ function beginQuiz() {
 
 };
   
-var questionCount = 0;
+
 function questAndAnswers(){
 
 questionEl.textContent = quizQuestions[questionCount].title;
@@ -58,44 +67,38 @@ console.log(quizQuestions[questionCount].choices[0]);
 
 
 }
-// // ,{
-// //   title: "What symbols are used in making a Javascript object?",
-// //   choices: ["&&", "{}", "===", "[]"],
-// //   answer: "{}",
-// // }
-// ];
+formEl.addEventListener("click", nextQuestion)
+function nextQuestion(event) {
+  if(!event.target.matches("button")){
+    console.log("not a button");
+    return null;
+  }
+  event.preventDefault();
+  console.log(event.target);
+  var userChoice = event.target.textContent;
+  console.log(userChoice);
+  console.log(quizQuestions[questionCount].answer)
+  if(userChoice === quizQuestions[questionCount].answer){
+    totalScore ++;
+    secondsLeft +=6;
+    timeEl.textContent = secondsLeft + " time left.";
 
-// if (choices === answer) {
-//   totalScore ++;
-//   secondsLeft + 6;
+    console.log("correct")
+   }
+   questionCount ++;
+   questAndAnswers();
   
-// }
+}
 
-// };
-
-
-
-// // formEl.addEventListener("click",nextQuestion)
-
-// // function nextQuestion(){
-
-  
-// // }
-//     // //  var valueChoices= [valueAEl, valueBEl, valueCEl, valueDEl,];
-//   //  var answerChoices = ["<>","{}","[]","()"];
-//   // //  var soltion1= [valueAEl, valueBEl, valueCEl, valueDEl];
-//   //  var correctAnswer= "[]";
- 
-
-
-//  // [
-//  //   {what
-//  //     title: "quetsion 1",
-//  //     choices: ['option 1', 'option 2'],
-//  //     answer: 'option 2'
-//  //   } is ,
-//  //   {
-//  //     title: "quetsion 2",
-//  //     choices: ['option 1', 'option 2'],
-//  //     answer: 'option 1'
-//  //   }
+function gameOver(){
+  // stop timer
+  // display end screen
+  // display user score on end screen
+  // hide & question answer
+  // class hidden element Css class has sytle display:none
+  //  remove css  class style display
+  // classlist.add("") or remove
+// input area for users nanme/intials
+// sumbit button that saves score an name to localstorage
+// show high score
+}
