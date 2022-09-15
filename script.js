@@ -1,5 +1,7 @@
 var startBtn = document.getElementById("startBtn");
 var timeEl = document.querySelector(".time");
+var quizCardEl = document.querySelector(".quizCard");
+var scoreBoardEl = document.querySelector("#scoreBoard")
 // var mainEl = document.getElementById("main");
 var formEl = document.querySelector("#quiz");
 var questionEl = document.getElementById("theQuestion");
@@ -39,70 +41,101 @@ startBtn.addEventListener("click", beginQuiz);
 
 function setTime() {
   // Sets interval in variable
-  var timerInterval = setInterval(function() {
-    secondsLeft--;
-    timeEl.textContent = secondsLeft + " time left.";
-
-    if(secondsLeft === 0) {
-      // Stops execution of action at set interval
-      clearInterval(timerInterval);
-      window.alert("Times Up.")
-      quizEnd = true;
-
-    }
-
-  }, 1000);
+  
 }
 
 
 
 function beginQuiz() {
-  setTime();
-  questAndAnswers();
+  var timerInterval = setInterval(function() {
+    secondsLeft--;
+    timeEl.textContent = secondsLeft + " time left.";
 
+    if(secondsLeft <= 0) {
+      // Stops execution of action at set interval
+      clearInterval(timerInterval);
+      window.confirm("GAME OVER!! Would you like to see your score?")
+      quizEnd = true;
+
+    }
+
+  }, 1000);
+
+
+  function questAndAnswers() {
+
+    if (questionCount >= quizQuestions.length){
+      quizEnd = true;
+      endGame();
+      // console.log("hit");
+      return;
+    }
+    questionEl.textContent = quizQuestions[questionCount].title;
+    valueAEl.textContent = quizQuestions[questionCount].choices[0];
+    valueBEl.textContent = quizQuestions[questionCount].choices[1];
+    valueCEl.textContent = quizQuestions[questionCount].choices[2];
+    valueDEl.textContent = quizQuestions[questionCount].choices[3];
+    console.log(quizQuestions[questionCount].choices[0]);
+    // Math.floor(Math.random() * choices;
+  
+    
+  
+    formEl.addEventListener("click", nextQuestion)
+  
+    
+  }
+
+  function nextQuestion(event) {
+    if(!event.target.matches("button")){
+      console.log("not a buuton");
+      return  null;
+    }
+    event.preventDefault();
+    console.log(event.target);
+    var userChoice = event.target.textContent;
+    console.log(userChoice);
+    console.log(quizQuestions[questionCount].answer)
+    if(userChoice === quizQuestions[questionCount].answer){
+      totalScore ++;
+      secondsLeft +=6;
+      timeEl.textContent = secondsLeft + "time left";
+      // console.log("correct")
+    } else{
+      secondsLeft -=8;
+      timeEl.textContent = secondsLeft + "time left";
+      // console.log("wrong answer");
+    }
+  
+    questionCount ++;
+    questAndAnswers();
+    
+  }
+
+  function endGame() {
+    clearInterval(timerInterval);
+    var confirmMsg = window.confirm("GAME OVER!! Would you like to see your score?");
+    if(confirmMsg == true){
+      console.log("hit")
+      quizCardEl.classList.add("hidden");
+      scoreBoardEl.classList.remove("hidden");
+      scoreBoardEl.classList.add("scoreCard"); 
+    }
+    var table = document.querySelector("#scoreTable");
+    var row  = table.insertRow();
+    var cell = row.insertCell();
+    
+    // function scoreList(){
+
+    // }
+
+
+  }
+
+  questAndAnswers();
 };
   
 
-function questAndAnswers() {
 
-questionEl.textContent = quizQuestions[questionCount].title;
-valueAEl.textContent = quizQuestions[questionCount].choices[0];
-valueBEl.textContent = quizQuestions[questionCount].choices[1];
-valueCEl.textContent = quizQuestions[questionCount].choices[2];
-valueDEl.textContent = quizQuestions[questionCount].choices[3];
-console.log(quizQuestions[questionCount].choices[0]);
-// Math.floor(Math.random() * choices;
-}
 
-formEl.addEventListener("click", nextQuestion)
-function nextQuestion(event) {
-  if(!event.target.matches("button")){
-    console.log("not a buuton");
-    return  null;
-  }
-  event.preventDefault();
-  console.log(event.target);
-  var userChoice = event.target.textContent;
-  console.log(userChoice);
-  console.log(quizQuestions[questionCount].answer)
-  if(userChoice === quizQuestions[questionCount].answer){
-    totalScore ++;
-    secondsLeft +=6;
-    timeEl.textContent = secondsLeft + "time left";
-    console.log("correct")
-  }
 
-  questionCount ++;
-  questAndAnswers();
-  
-}
 
-function endGame() {
-  if(quizEnd === true){
-    formEl.classList.add("hidden")
-  }
-  if( questionCount > quizQuestions.length){
-    formEl.classList.add("hidden")
-  }
-  
-}
