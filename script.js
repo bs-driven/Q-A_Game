@@ -10,19 +10,27 @@ var valueDEl = document.getElementById("D");
 var secondsLeft = 40;
 var totalScore = 0;
 var questionCount = 0;
-// var questions= quizQuestions
-// var submitAnswer= document.querySelector("#finalAnswer");
-
+var quizEnd = false;
 var quizQuestions =[ 
   {
-      title: "What symbol starts a array?",
-      choices:["<>", "()", "{}", "[]"],
-      answer: "[]",
+    title: "What symbol starts a array?",
+    choices:["<>", "()", "{}", "[]"],
+    answer: "[]",
   },
   {
-  title: "What symbols are used in making a Javascript object?",
-  choices: ["&&", "{}", "===", "[]"],
-  answer: "{}",
+    title: "What symbols are used in making a Javascript object?",
+    choices: ["&&", "{}", "===", "[]"],
+    answer: "{}",
+},
+{
+    title:" Which API is CSS related?",
+    choices: ["Bootstrap", "Weather","Cat Facts","Intellexer"],
+    answer: "Bootstrap",
+},
+{
+  title:" Which of these is a example of a pseudo-clas? ",
+  choices:["<p>",".article","p:hover", "p::first-letter"],
+  answer:"p:hover",
 }
 ]
 
@@ -39,6 +47,7 @@ function setTime() {
       // Stops execution of action at set interval
       clearInterval(timerInterval);
       window.alert("Times Up.")
+      quizEnd = true;
 
     }
 
@@ -54,7 +63,7 @@ function beginQuiz() {
 };
   
 
-function questAndAnswers(){
+function questAndAnswers() {
 
 questionEl.textContent = quizQuestions[questionCount].title;
 valueAEl.textContent = quizQuestions[questionCount].choices[0];
@@ -63,15 +72,13 @@ valueCEl.textContent = quizQuestions[questionCount].choices[2];
 valueDEl.textContent = quizQuestions[questionCount].choices[3];
 console.log(quizQuestions[questionCount].choices[0]);
 // Math.floor(Math.random() * choices;
-
-
-
 }
+
 formEl.addEventListener("click", nextQuestion)
 function nextQuestion(event) {
   if(!event.target.matches("button")){
-    console.log("not a button");
-    return null;
+    console.log("not a buuton");
+    return  null;
   }
   event.preventDefault();
   console.log(event.target);
@@ -81,24 +88,11 @@ function nextQuestion(event) {
   if(userChoice === quizQuestions[questionCount].answer){
     totalScore ++;
     secondsLeft +=6;
-    timeEl.textContent = secondsLeft + " time left.";
-
+    timeEl.textContent = secondsLeft + "time left";
     console.log("correct")
-   }
-   questionCount ++;
-   questAndAnswers();
-  
-}
+  }
 
-function gameOver(){
-  // stop timer
-  // display end screen
-  // display user score on end screen
-  // hide & question answer
-  // class hidden element Css class has sytle display:none
-  //  remove css  class style display
-  // classlist.add("") or remove
-// input area for users nanme/intials
-// sumbit button that saves score an name to localstorage
-// show high score
+  questionCount ++;
+  questAndAnswers();
+  
 }
