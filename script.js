@@ -96,3 +96,13 @@ function nextQuestion(event) {
   questAndAnswers();
   
 }
+
+function endGame() {
+  if(quizEnd === true){
+    formEl.classList.add("hidden")
+  }
+  if( questionCount > quizQuestions.length){
+    formEl.classList.add("hidden")
+  }
+  
+}
