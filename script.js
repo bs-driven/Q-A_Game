@@ -1,7 +1,8 @@
 var startBtn = document.getElementById("startBtn");
 var timeEl = document.querySelector(".time");
 var quizCardEl = document.querySelector(".quizCard");
-var scoreBoardEl = document.querySelector("#scoreBoard")
+var scoreTableEl = document.querySelector("#scoreTable");
+var scoreBoardEl = document.querySelector("#scoreBoard");
 // var mainEl = document.getElementById("main");
 var formEl = document.querySelector("#quiz");
 var questionEl = document.getElementById("theQuestion");
@@ -33,6 +34,16 @@ var quizQuestions =[
   title:" Which of these is a example of a pseudo-clas? ",
   choices:["<p>",".article","p:hover", "p::first-letter"],
   answer:"p:hover",
+},
+{
+  title: "A if statement is found in which of these?",
+  choices: ["HTML", "CSS", "Bootstrap", "Javascript"],
+  answer: "Javascript",
+},
+{
+  title:"Which of these is the way to make comments in Javascript?",
+  choices:["<--", "/*", "##", "//"],
+  answer: "//",
 }
 ]
 
@@ -44,8 +55,6 @@ function setTime() {
   
 }
 
-
-
 function beginQuiz() {
   var timerInterval = setInterval(function() {
     secondsLeft--;
@@ -54,8 +63,8 @@ function beginQuiz() {
     if(secondsLeft <= 0) {
       // Stops execution of action at set interval
       clearInterval(timerInterval);
-      window.confirm("GAME OVER!! Would you like to see your score?")
       quizEnd = true;
+      endGame();
 
     }
 
@@ -115,18 +124,33 @@ function beginQuiz() {
     clearInterval(timerInterval);
     var confirmMsg = window.confirm("GAME OVER!! Would you like to see your score?");
     if(confirmMsg == true){
+      var userIdQuestion = window.prompt("Please give your name or intials.");
       console.log("hit")
       quizCardEl.classList.add("hidden");
       scoreBoardEl.classList.remove("hidden");
       scoreBoardEl.classList.add("scoreCard"); 
-    }
-    var table = document.querySelector("#scoreTable");
-    var row  = table.insertRow();
-    var cell = row.insertCell();
+    } else{
+      window.alert("Thank you. Try again by refreshing the page. I'm sure you'll do better next time.");
+      quizCardEl.classList.add("hidden");
+    };
+   
+    var userId = userIdQuestion.valueOf("");
+    console.log(userId);
+    console.log(totalScore);
+   
     
-    // function scoreList(){
+    function scoreList(){
+      var topFive = 1;
+      var table = document.querySelector("#scoreTable");
+      var newRow  = table.insertRow(1);
+      var newCell = newRow.insertCell(0);
 
-    // }
+     var tableInfo = newCell.textContent();
+     console.log(tableInfo);
+
+      
+    }
+    scoreList();
 
 
   }
