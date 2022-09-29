@@ -14,6 +14,14 @@ var secondsLeft = 40;
 var totalScore = 0;
 var questionCount = 0;
 var quizEnd = false;
+var first = document.getElementById("1st");
+var second = document.getElementById("2nd");
+// var third = document.querySelector("#3rd");
+// var forth = document.querySelector("#4th");
+// var fifth = document.querySelector("#5th");
+var scoreColumn = document.querySelector("#pointscore");
+var userIntial = document.querySelector("#userIntials");
+var ranks = document.querySelector("#rank");
 var quizQuestions =[ 
   {
     title: "What symbol starts a array?",
@@ -69,13 +77,13 @@ function beginQuiz() {
     }
 
   }, 1000);
-
-
+// generates the question and choices available
   function questAndAnswers() {
 
     if (questionCount >= quizQuestions.length){
       quizEnd = true;
       endGame();
+
       // console.log("hit");
       return;
     }
@@ -85,13 +93,8 @@ function beginQuiz() {
     valueCEl.textContent = quizQuestions[questionCount].choices[2];
     valueDEl.textContent = quizQuestions[questionCount].choices[3];
     console.log(quizQuestions[questionCount].choices[0]);
-    // Math.floor(Math.random() * choices;
-  
-    
-  
-    formEl.addEventListener("click", nextQuestion)
-  
-    
+    // Math.floor(Math.random() * choices; 
+    formEl.addEventListener("click", nextQuestion);
   }
 
   function nextQuestion(event) {
@@ -134,21 +137,32 @@ function beginQuiz() {
       quizCardEl.classList.add("hidden");
     };
    
-    var userId = userIdQuestion.valueOf("");
+    var userId = userIdQuestion.valueOf("").trim();
+    var userIdanPoints = {userId, totalScore};
+    localStorage.setItem("userinfo", JSON.stringify(userIdanPoints));
     console.log(userId);
     console.log(totalScore);
+    
    
     
     function scoreList(){
-      var topFive = 1;
-      var table = document.querySelector("#scoreTable");
-      var newRow  = table.insertRow(1);
-      var newCell = newRow.insertCell(0);
+    //   localStorage.setItem(totalScore,JSON.stringify(scoreValue))
+    JSON.parse(localStorage.getItem("userinfo"));
+    
+    var newTD = document.createElement("td");
+    var tdContent = document.createTextNode(`${userId}`);
+    var firstTD = first.appendChild(newTD);
+    var firstTdContent = firstTD.append(tdContent);
+    // console.log(firstTdContent, "hit");
+    var newTd2 = document.createElement("td");
+    var td2Content = document.createTextNode(`${totalScore}`);
+    var firstTD2 = first.appendChild(newTd2);
+    var firstTdContent2 = firstTD2.append(td2Content);
+    // here i need to save the info generated to localstorage!!
+    
+    
 
-     var tableInfo = newCell.textContent();
-     console.log(tableInfo);
 
-      
     }
     scoreList();
 
