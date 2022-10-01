@@ -83,7 +83,6 @@ function beginQuiz() {
     if (questionCount >= quizQuestions.length){
       quizEnd = true;
       endGame();
-
       // console.log("hit");
       return;
     }
@@ -159,6 +158,11 @@ function beginQuiz() {
     var firstTD2 = first.appendChild(newTd2);
     var firstTdContent2 = firstTD2.append(td2Content);
     // here i need to save the info generated to localstorage!!
+
+    // var secondTD = second.appendChild(newTD);
+    // var secondTdcontent = secondTD.append(tdContent);
+    // var secondTD2 = second.appendChild(newTd2);
+    // var secondTdcontent2 = secondTD2.append(secondTdcontent);
     
     
 
