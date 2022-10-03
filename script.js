@@ -127,51 +127,69 @@ function beginQuiz() {
     var confirmMsg = window.confirm("GAME OVER!! Would you like to see your score?");
     if(confirmMsg == true){
       var userIdQuestion = window.prompt("Please give your name or intials.");
-      console.log("hit")
+      console.log("hit");
+      var userId = userIdQuestion.valueOf("").trim();
+      var userPointTotal = totalScore;
+      saveDetails();
+      // var userIdanPoints = {userId, totalScore};
+      // localStorage.setItem("userInfo", JSON.stringify(userIdanPoints));
       quizCardEl.classList.add("hidden");
       scoreBoardEl.classList.remove("hidden");
       scoreBoardEl.classList.add("scoreCard"); 
     } else{
       window.alert("Thank you. Try again by refreshing the page. I'm sure you'll do better next time.");
       quizCardEl.classList.add("hidden");
+      preventDefault();
+      beginQuiz();
     };
-   
-    var userId = userIdQuestion.valueOf("").trim();
-    var userIdanPoints = {userId, totalScore};
-    localStorage.setItem("userinfo", JSON.stringify(userIdanPoints));
+
+    function saveDetails(){
+    localStorage.setItem("userName",JSON.stringify(userId));
+      localStorage.setItem("userScore",JSON.stringify(userPointTotal));
+    
+    //   JSON.parse(localStorage.getItem("userName"));
+    // // JSON.parse(localStorage.getItem("userScore"));
+
+      }
+
     console.log(userId);
     console.log(totalScore);
-    
    
-    
-    function scoreList(){
+    scoreList(userId, totalScore);
+
+  }
+
+  function scoreList(){
     //   localStorage.setItem(totalScore,JSON.stringify(scoreValue))
-    JSON.parse(localStorage.getItem("userinfo"));
+    // JSON.parse(localStorage.getItem("userName"));
+    // JSON.parse(localStorage.getItem("userScore"));
+
     
     var newTD = document.createElement("td");
-    var tdContent = document.createTextNode(`${userId}`);
+    var tdContent = document.createTextNode(`${JSON.parse(localStorage.getItem("userName"))}`);
     var firstTD = first.appendChild(newTD);
-    var firstTdContent = firstTD.append(tdContent);
+    var firstContent = firstTD.append(tdContent);
     // console.log(firstTdContent, "hit");
     var newTd2 = document.createElement("td");
-    var td2Content = document.createTextNode(`${totalScore}`);
+    var td2Content = document.createTextNode(`${JSON.parse(localStorage.getItem("userScore"))}`);
     var firstTD2 = first.appendChild(newTd2);
     var firstTdContent2 = firstTD2.append(td2Content);
+    // localStorage.setItem(firstTdContent2,JSON.stringify(firstplacescore))
+    // var firstTdContent2= JSON.parse(localStorage.getItem("firstplacescore"));
+
     // here i need to save the info generated to localstorage!!
 
-    // var secondTD = second.appendChild(newTD);
+    // var secondNewTD = document.createElement("td");
+    // var secondTD = second.appendChild(secondNewTD);
     // var secondTdcontent = secondTD.append(tdContent);
-    // var secondTD2 = second.appendChild(newTd2);
-    // var secondTdcontent2 = secondTD2.append(secondTdcontent);
+    // var secondNewTD2 = document.createElement("td");
+    // var secondTD2 = second.appendChild(secondNewTD2);
+    // var secondTdcontent2 = secondTD2.append(td2Content);
     
     
 
 
     }
-    scoreList();
-
-
-  }
 
   questAndAnswers();
 };
