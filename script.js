@@ -130,7 +130,7 @@ function beginQuiz() {
       console.log("hit");
       var userId = userIdQuestion.valueOf("").trim();
       var userPointTotal = totalScore;
-      saveDetails();
+      saveDetails(userId, userPointTotal);
       // var userIdanPoints = {userId, totalScore};
       // localStorage.setItem("userInfo", JSON.stringify(userIdanPoints));
       quizCardEl.classList.add("hidden");
@@ -143,21 +143,21 @@ function beginQuiz() {
       beginQuiz();
     };
 
-    function saveDetails(){
-    localStorage.setItem("userName",JSON.stringify(userId));
-      localStorage.setItem("userScore",JSON.stringify(userPointTotal));
-    
-    //   JSON.parse(localStorage.getItem("userName"));
-    // // JSON.parse(localStorage.getItem("userScore"));
-
-      }
-
     console.log(userId);
     console.log(totalScore);
    
     scoreList(userId, totalScore);
 
   }
+
+  function saveDetails() {
+    localStorage.setItem("userName",JSON.stringify(userId));
+    localStorage.setItem("userScore",JSON.stringify(userPointTotal));
+  
+  //   JSON.parse(localStorage.getItem("userName"));
+  // // JSON.parse(localStorage.getItem("userScore"));
+
+    }
 
   function scoreList(){
     //   localStorage.setItem(totalScore,JSON.stringify(scoreValue))
