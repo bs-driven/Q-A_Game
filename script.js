@@ -150,9 +150,18 @@ function beginQuiz() {
 
   }
 
-  function saveDetails() {
-    localStorage.setItem("userName",JSON.stringify(userId));
-    localStorage.setItem("userScore",JSON.stringify(userPointTotal));
+  function saveDetails(userId, userPointTotal) {
+    // localStorage.setItem("userName",JSON.stringify(userId));
+    // localStorage.setItem("userScore",JSON.stringify(userPointTotal));
+    var userObj= {
+      userId: userId,
+      UserScore: userPointTotal
+    };
+
+    var oldUser = JSON.parse(localStorage.getItem('highscores')) || [];
+    oldUser.push(userObj);
+
+    localStorage.setItem('highscores',JSON.stringify(oldUser))
   
   //   JSON.parse(localStorage.getItem("userName"));
   // // JSON.parse(localStorage.getItem("userScore"));
@@ -163,17 +172,27 @@ function beginQuiz() {
     //   localStorage.setItem(totalScore,JSON.stringify(scoreValue))
     // JSON.parse(localStorage.getItem("userName"));
     // JSON.parse(localStorage.getItem("userScore"));
+    var scoreData = JSON.parse(localStorage.getItem('highscores'));
+    console.log(scoreData);
+    for (let index = 0; index < scoreData.length; index++) {
+      const eachScore = scoreData[index];
+      var newTD = document.createElement("td");
+      var tdContent = document.createTextNode(eachScore.userId);
+      var firstTD = first.appendChild(newTD);
+      var firstContent = firstTD.append(tdContent);
+      // console.log(firstTdContent, "hit");
+      var newTd2 = document.createElement("td");
+      var td2Content = document.createTextNode(eachScore.UserScore);
+      var firstTD2 = first.appendChild(newTd2);
+      var firstTdContent2 = firstTD2.append(td2Content);
+      
+    }
 
     
-    var newTD = document.createElement("td");
-    var tdContent = document.createTextNode(`${JSON.parse(localStorage.getItem("userName"))}`);
-    var firstTD = first.appendChild(newTD);
-    var firstContent = firstTD.append(tdContent);
-    // console.log(firstTdContent, "hit");
-    var newTd2 = document.createElement("td");
-    var td2Content = document.createTextNode(`${JSON.parse(localStorage.getItem("userScore"))}`);
-    var firstTD2 = first.appendChild(newTd2);
-    var firstTdContent2 = firstTD2.append(td2Content);
+    
+   
+    
+   
     // localStorage.setItem(firstTdContent2,JSON.stringify(firstplacescore))
     // var firstTdContent2= JSON.parse(localStorage.getItem("firstplacescore"));
 
@@ -193,9 +212,3 @@ function beginQuiz() {
 
   questAndAnswers();
 };
-  
-
-
-
-
-
